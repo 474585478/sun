@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mongo.manager.domain.baseInner.InnerWechatInfo;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,6 +16,7 @@ import java.util.Date;
  * @author early
  */
 @Document(value = "cus_customer")
+@Data
 public class CusCustomer extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -128,6 +130,8 @@ public class CusCustomer extends BaseEntity
 
     //"创建时间"
     private Date createTime;
+
+    private String lastWord;
 
     public Date getCreateTime() {
         return createTime;
