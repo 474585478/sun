@@ -1,6 +1,5 @@
 package com.mongo.manager.utils;
 
-import com.yifei.api.common.core.text.StrFormatter;
 import org.bson.types.ObjectId;
 
 import java.util.*;
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
  * 
  * @author early
  */
-public class StringUtils extends org.apache.commons.lang3.StringUtils
+public class StringUtils
 {
     /** 空字符串 */
     private static final String NULLSTR = "";
@@ -256,78 +255,6 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         return str.substring(start, end);
     }
 
-    /**
-     * 格式化文本, {} 表示占位符<br>
-     * 此方法只是简单将占位符 {} 按照顺序替换为参数<br>
-     * 如果想输出 {} 使用 \\转义 { 即可，如果想输出 {} 之前的 \ 使用双转义符 \\\\ 即可<br>
-     * 例：<br>
-     * 通常使用：format("this is {} for {}", "a", "b") -> this is a for b<br>
-     * 转义{}： format("this is \\{} for {}", "a", "b") -> this is \{} for a<br>
-     * 转义\： format("this is \\\\{} for {}", "a", "b") -> this is \a for b<br>
-     * 
-     * @param template 文本模板，被替换的部分用 {} 表示
-     * @param params 参数值
-     * @return 格式化后的文本
-     */
-    public static String format(String template, Object... params)
-    {
-        if (isEmpty(params) || isEmpty(template))
-        {
-            return template;
-        }
-        return StrFormatter.format(template, params);
-    }
-
-    /**
-     * 字符串转set
-     * 
-     * @param str 字符串
-     * @param sep 分隔符
-     * @return set集合
-     */
-    public static final Set<String> str2Set(String str, String sep)
-    {
-        return new HashSet<String>(str2List(str, sep, true, false));
-    }
-
-    /**
-     * 字符串转list
-     * 
-     * @param str 字符串
-     * @param sep 分隔符
-     * @param filterBlank 过滤纯空白
-     * @param trim 去掉首尾空白
-     * @return list集合
-     */
-    public static final List<String> str2List(String str, String sep, boolean filterBlank, boolean trim)
-    {
-        List<String> list = new ArrayList<String>();
-        if (com.yifei.api.common.utils.StringUtils.isEmpty(str))
-        {
-            return list;
-        }
-
-        // 过滤空白字符串
-        if (filterBlank && com.yifei.api.common.utils.StringUtils.isBlank(str))
-        {
-            return list;
-        }
-        String[] split = str.split(sep);
-        for (String string : split)
-        {
-            if (filterBlank && com.yifei.api.common.utils.StringUtils.isBlank(string))
-            {
-                continue;
-            }
-            if (trim)
-            {
-                string = string.trim();
-            }
-            list.add(string);
-        }
-
-        return list;
-    }
 
     /**
      * 下划线转驼峰命名
